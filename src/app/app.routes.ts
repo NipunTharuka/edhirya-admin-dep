@@ -6,8 +6,6 @@ import {UserComponent} from './components/user/user.component';
 import {AddEditUserComponent} from './components/user/add-edit-user/add-edit-user.component';
 import {DepartmentComponent} from './components/department/department.component';
 import {AddEditDepartmentComponent} from './components/department/add-edit-department/add-edit-department.component';
-import {EmployeeComponent} from './components/employee/employee.component';
-import {AddEditEmployeeComponent} from './components/employee/add-edit-employee/add-edit-employee.component';
 import {LogsComponent} from './components/logs/logs.component';
 
 export const routes: Routes = [
@@ -50,27 +48,13 @@ export const routes: Routes = [
       },
       {
         path: 'departments',
-        component: DepartmentComponent,
-      },
-      {
-        path: 'departments/add-edit',
-        component: AddEditDepartmentComponent,
-      },
-      {
-        path: 'departments/add-edit/:id',
-        component: AddEditDepartmentComponent,
+        loadChildren: () =>
+          import('./modules/department/department.module').then((m) => m.DepartmentModule),
       },
       {
         path: 'employees',
-        component: EmployeeComponent,
-      },
-      {
-        path: 'employees/add-edit',
-        component: AddEditEmployeeComponent,
-      },
-      {
-        path: 'employees/add-edit/:id',
-        component: AddEditEmployeeComponent,
+        loadChildren: () =>
+          import('./modules/employee/employee.module').then((m) => m.EmployeeModule),
       },
       {
         path: 'logs',

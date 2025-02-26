@@ -10,7 +10,6 @@ import {UserService} from '../core/services/user.service';
 import {AuthService} from '../modules/auth/services/auth.service';
 import {UnderscoreToSpaceAndCamelCasePipe} from '../core/pipes/underscore-to-space-and-camel-case.pipe';
 import {NzDropDownDirective, NzDropdownMenuComponent} from 'ng-zorro-antd/dropdown';
-import {NzButtonComponent} from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-layout',
