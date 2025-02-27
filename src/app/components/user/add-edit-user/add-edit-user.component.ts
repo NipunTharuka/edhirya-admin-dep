@@ -24,6 +24,7 @@ import {NzIconDirective} from 'ng-zorro-antd/icon';
 import {Observable, Observer} from 'rxjs';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {FileService} from '../../../core/services/file.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -57,7 +58,8 @@ export class AddEditUserComponent implements OnInit {
               private notification: NzNotificationService,
               private userService: UserService,
               private messageService: NzMessageService,
-              private fileService: FileService) {
+              private fileService: FileService,
+              protected router: Router,) {
     this.formErrors = {
       firstname: {},
       lastname: {},
@@ -130,6 +132,7 @@ export class AddEditUserComponent implements OnInit {
       try {
         await this.userService.createUser(payload)
         this.notification.success('Success', 'User created successfully!');
+        await this.router.navigateByUrl('/admin/users')
       } catch (e) {
         console.error('Error creating user:', e);
         this.notification.error('Error', 'Failed to create user. Please try again.',);

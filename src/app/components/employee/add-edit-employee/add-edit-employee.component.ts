@@ -16,7 +16,6 @@ import {NzNotificationService} from 'ng-zorro-antd/notification';
 import {DepartmentService} from '../../../core/services/department.service';
 import {AppUtils} from '../../../core/config/app.utils';
 import {EmployeeService} from '../../../core/services/employee.service';
-import {Observable, Observer} from 'rxjs';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {FileService} from '../../../core/services/file.service';
 
