@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
@@ -19,6 +19,11 @@ import {NzDropDownDirective, NzDropdownMenuComponent} from 'ng-zorro-antd/dropdo
   standalone: true
 })
 export class LayoutComponent implements OnInit{
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenWidth();
+  }
+
   isCollapsed = false;
 
   paths = [
@@ -56,6 +61,7 @@ export class LayoutComponent implements OnInit{
     }
   ]
   loggedInUser: any;
+  openSubmenu: number | null = null;
 
   constructor(protected router: Router,
               private userService: UserService,
@@ -64,6 +70,14 @@ export class LayoutComponent implements OnInit{
   ngOnInit() {
     this.router.isActive(this.routeLinkActive('DASHBOARD') || '', true)
     this.getLoggedInUserDetails()
+  }
+  checkScreenWidth() {
+    const screenWidth = window.innerWidth;
+    this.isCollapsed = screenWidth <= 640;
+  }
+
+  toggleSubmenu(submenu: number, open: boolean): void {
+    this.openSubmenu = open ? submenu : null;
   }
 
   routeLink(type: string) {
